@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>مولّد مفاتيح الإشعارات</title>
+<style>
+  body{font-family:-apple-system,"SF Arabic",system-ui,sans-serif;margin:0;padding:20px;background:#f4f1ea;color:#1b2b2e;line-height:1.7}
+  main{max-width:560px;margin:0 auto}
+  h1{font-size:22px}
+  button{font:inherit;font-size:17px;padding:12px 18px;border:0;border-radius:12px;background:#0f6e6a;color:#fff;width:100%}
+  .box{background:#fff;border-radius:14px;padding:14px;margin:14px 0;word-break:break-all;direction:ltr;text-align:left;font-family:ui-monospace,Menlo,monospace;font-size:13px}
+  .lbl{direction:rtl;text-align:right;font-family:inherit;font-weight:700;margin-bottom:6px;font-size:15px}
+  .warn{background:#fff3cd;border-radius:12px;padding:12px;font-size:14px}
+  .copy{margin-top:8px;background:#e3efed;color:#0f6e6a;font-size:15px;padding:8px}
+</style>
+</head>
+<body>
+<main>
+  <h1>مولّد مفاتيح الإشعارات (VAPID)</h1>
+  <p>يُنشئ زوج مفاتيح داخل جهازك فقط — لا يُرسل شيئاً لأي جهة. اضغط الزر ثم انسخ القيمتين:</p>
+  <button id="gen">إنشاء المفاتيح</button>
+  <div id="out" hidden>
+    <div class="box"><div class="lbl">المفتاح العام (يوضع في js/config.js وفي أسرار الدالة)</div><span id="pub"></span><button class="copy" data-t="pub">نسخ</button></div>
+    <div class="box"><div class="lbl">المفتاح الخاص (يوضع في أسرار الدالة فقط)</div><span id="prv"></span><button class="copy" data-t="prv">نسخ</button></div>
+    <div class="warn">⚠️ المفتاح الخاص سري: لا تضعه في GitHub ولا في ملف config.js ولا ترسله لأحد. بعد نسخه واستخدامه يمكنك حذف هذه الصفحة من المستودع.</div>
+  </div>
+</main>
+<script>
+  const b64u = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  document.getElementById('gen').onclick = async () => {
+    const kp = await crypto.subtle.generateKey({name:'ECDSA', namedCurve:'P-256'}, true, ['sign','verify']);
+    const pub = await crypto.subtle.exportKey('raw', kp.publicKey);       // 65 بايت (نقطة غير مضغوطة)
+    const jwk = await crypto.subtle.exportKey('jwk', kp.privateKey);      // d = 32 بايت base64url
+    document.getElementById('pub').textContent = b64u(pub);
+    document.getElementById('prv').textContent = jwk.d;
+    document.getElementById('out').hidden = false;
+  };
+  document.querySelectorAll('.copy').forEach((b) => b.onclick = async () => {
+    const t = document.getElementById(b.dataset.t).textContent;
+    try { await navigator.clipboard.writeText(t); b.textContent = 'تم النسخ ✓'; } catch { b.textContent = 'اضغط مطولاً على النص لنسخه'; }
+  });
+</script>
+</body>
+</html>

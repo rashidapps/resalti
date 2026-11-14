@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <title>رسائلي</title>
+  <meta name="description" content="تطبيق مراسلة خاص وبسيط">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0b4f55">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- iOS: تجربة التطبيق الأصلي بعد "إضافة إلى الشاشة الرئيسية" -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="رسائلي">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="app">
+    <section id="screen-boot" class="screen active" aria-live="polite">
+      <div class="splash">
+        <img src="icon-192.png" alt="" width="96" height="96" class="splash-logo">
+        <div class="spinner"></div>
+        <p id="boot-msg">جاري التحميل…</p>
+      </div>
+    </section>
+    <section id="screen-auth" class="screen"></section>
+    <section id="screen-list" class="screen"></section>
+    <section id="screen-chat" class="screen"></section>
+    <section id="screen-settings" class="screen"></section>
+  </div>
+  <div id="overlay-root"></div>
+  <div id="toast-root" aria-live="polite"></div>
+
+  <noscript><p style="padding:24px;text-align:center">يتطلب هذا التطبيق تفعيل JavaScript.</p></noscript>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
