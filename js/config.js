@@ -10,8 +10,8 @@
 //  الحماية الفعلية للبيانات تتم داخل Supabase عبر سياسات RLS (ملف schema.sql).
 // =====================================================================
 export const CONFIG = {
-  SUPABASE_URL: "",
-  SUPABASE_ANON_KEY: "",
+  SUPABASE_URL: "https://laurysigbzlmzrzodzvf.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_1ewWrF4Pff36N3soVyrxyA_hJ9lc3kY",
   VAPID_PUBLIC_KEY: "",
 
   APP_NAME: "رسائلي",
