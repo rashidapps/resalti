@@ -8,7 +8,7 @@
       فيظهر للمستخدم إشعار "تحديث متوفر" ثم يُحدَّث التطبيق دون فقدان بياناته.
    ===================================================================== */
 
-const VERSION = 'v1.0.0';
+const VERSION = 'v1.0.2';
 const STATIC_CACHE = `risa2li-static-${VERSION}`;
 const RUNTIME_CACHE = 'risa2li-runtime';
 const CDN_HOST = 'cdn.jsdelivr.net';
