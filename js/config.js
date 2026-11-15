@@ -12,7 +12,7 @@
 export const CONFIG = {
   SUPABASE_URL: "https://laurysigbzlmzrzodzvf.supabase.co",
   SUPABASE_ANON_KEY: "sb_publishable_1ewWrF4Pff36N3soVyrxyA_hJ9lc3kY",
-  VAPID_PUBLIC_KEY: "",
+  VAPID_PUBLIC_KEY: "BKTiup6jQohcmh2fB7yVnQO_SUc-2v5VsjfKfihXXyM_dmChT4S1zVuQrreO_g0svcz5P1ScYG-ZqCnIYpYRVW4",
 
   APP_NAME: "رسائلي",
   MAX_VIDEO_MB: 45,        // حد Supabase المجاني 50MB للملف الواحد
